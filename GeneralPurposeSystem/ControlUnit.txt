@@ -1,0 +1,28 @@
+module ControlUnit(clk, enter, SC, CW, ready);
+input clk, enter;
+input [4:0] SC;
+output reg [16:0] CW;
+output reg ready;
+reg [2:0] s;
+initial s = 0;
+
+always@(posedge clk)
+case (s)
+0: if(enter) s <= 1;
+1: if(enter) s <= 2;
+2: s <= 3;
+3: s <= 4;
+4: if(SC[0]) s <= 0; else s <= 2;
+default: s <= 0;
+endcase
+
+always@(s or enter or SC)
+begin
+ready = 0;
+CW = 0;
+case (s)
+0: begin ready = 1; if(enter) begin CW[15:13] = 3; cW[2:0] = 7;end end
+1: begin ready = 1; if(enter) begin CW[12:10] = 3; CW[2:0] = 7; R1 <= 0;end end
+2: begin CW[9:7] = 3; CW[6:5] = 3; CW[4:3] = 1; CW[2:0] = 1; CW[12:10] = 5; end
+3: begin CW[12:10] = 3; CW[6:5] = 2; CW[2:0] = 7; CW[16] = 1; end
+

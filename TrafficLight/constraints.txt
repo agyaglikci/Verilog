@@ -1,0 +1,8 @@
+NET "PG" LOC = B4;
+NET "PY" LOC = A4;
+NET "PR" LOC = D5;
+NET "TG" LOC = C5;
+NET "TY" LOC = A6;
+NET "TR" LOC = B6;
+NET "clk" LOC = C9;
+NET "go" LOC = K17;
